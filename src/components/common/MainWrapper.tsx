@@ -1,6 +1,11 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
+import { useFetch } from '../../hooks';
+import {
+  getSymbolIntraday,
+  getSymbolIntradayParams,
+} from '../../apis/alphaVantage';
 
 const useStyles = makeStyles((theme: Theme) => ({
   content: {
@@ -10,12 +15,16 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const MainWrapper: React.FC = () => {
+  const { response, error, isLoading } = useFetch(getSymbolIntraday, {
+    symbol: 'IBM',
+  } as getSymbolIntradayParams);
+
   const classes = useStyles();
 
   return (
     <main className={classes.content}>
       <Toolbar />
-      Main Content
+      {isLoading ? 'Loading..' : JSON.stringify(response)}
     </main>
   );
 };
