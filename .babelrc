@@ -10,6 +10,22 @@
         {
           "regenerator": true
         }
+      ],
+      [
+        "babel-plugin-import",
+        {
+          "libraryName": "@material-ui/core",
+          "camel2DashComponentName": false
+        },
+        "core"
+      ],
+      [
+        "babel-plugin-import",
+        {
+          "libraryName": "@material-ui/icons",
+          "camel2DashComponentName": false
+        },
+        "icons"
       ]
     ]
   }

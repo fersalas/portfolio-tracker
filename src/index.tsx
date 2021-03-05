@@ -1,6 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import {
+  createMuiTheme,
+  Theme,
+  ThemeProvider,
+} from '@material-ui/core/styles';
 
-const App = () => <h1>Testing pre-commit hook</h1>;
+const theme: Theme = createMuiTheme();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { App } from './components/common';
+
+const Root = () => (
+  <ScopedCssBaseline>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </ScopedCssBaseline>
+);
+
+ReactDOM.render(<Root />, document.getElementById('root'));
