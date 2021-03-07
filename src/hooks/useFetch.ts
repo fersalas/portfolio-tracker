@@ -7,7 +7,12 @@ export interface UseFetchReturnI {
   isLoading: boolean;
 }
 
-export function useFetch(fetcher: any, params: any): UseFetchReturnI {
+export function useFetch(
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  fetcher: Function,
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  params: Object,
+): UseFetchReturnI {
   const [response, setResponse] = useState<null | AxiosResponse>(
     null,
   );
@@ -22,9 +27,6 @@ export function useFetch(fetcher: any, params: any): UseFetchReturnI {
         setResponse(await response);
         setIsLoading(false);
       } catch (error) {
-        if (error.name === 'AbortError') {
-          return;
-        }
         setError(error);
         setIsLoading(false);
       }

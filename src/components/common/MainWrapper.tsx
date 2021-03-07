@@ -3,9 +3,9 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import { useFetch } from '../../hooks';
 import {
-  getSymbolIntraday,
-  getSymbolIntradayParams,
-} from '../../apis/alphaVantage';
+  getSymbolTimeSeries,
+  GetSymbolTimeSeriesParams,
+} from '../../apis/twelveData';
 
 const useStyles = makeStyles((theme: Theme) => ({
   content: {
@@ -15,9 +15,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const MainWrapper: React.FC = () => {
-  const { response, error, isLoading } = useFetch(getSymbolIntraday, {
-    symbol: 'IBM',
-  } as getSymbolIntradayParams);
+  const { response, error, isLoading } = useFetch(
+    getSymbolTimeSeries,
+    {
+      symbol: 'IEMA',
+    } as GetSymbolTimeSeriesParams,
+  );
 
   const classes = useStyles();
 
